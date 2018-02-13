@@ -18,9 +18,11 @@ If you want to work from the source, the dependencies are the following :
 
 Usage example :
 
+```java
 Configuration conf = new Configuration("url", "username", "password", "", 0); // passphrase and timeout not yet implemented
 Blockchain blockchain = new Blockchain(conf);
 Call<String> = blockchain.getBlockHash(12345); // return a retrofit Call object, use it async or synchro as you wish
+```
 
 The following API object are available in com.reddcoin.core.API :
 
