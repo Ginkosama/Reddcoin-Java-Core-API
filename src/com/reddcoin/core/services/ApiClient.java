@@ -2,9 +2,11 @@ package com.reddcoin.core.services;
 
 import com.reddcoin.core.models.Configuration;
 import com.segment.jsonrpc.JsonRPCConverterFactory;
-import okhttp3.OkHttpClient;
+import okhttp3.*;
 import retrofit2.Retrofit;
 import retrofit2.converter.moshi.MoshiConverterFactory;
+
+import java.io.IOException;
 
 public class ApiClient
 {
@@ -15,12 +17,33 @@ public class ApiClient
     private static UtilitiesService UTILITIES_CLIENT;
     private static WalletService WALLET_CLIENT;
 
+    private static class BasicAuthInterceptor implements Interceptor
+    {
+        private String credentials;
+
+        public BasicAuthInterceptor(String user, String password)
+        {
+            this.credentials = Credentials.basic(user, password);
+        }
+
+        @Override
+        public Response intercept(Chain chain) throws IOException
+        {
+            return chain.proceed(chain.request().newBuilder().header("Authorization", credentials).build());
+        }
+
+    }
+
+    private static OkHttpClient getClient(String user, String password)
+    {
+        return new OkHttpClient().newBuilder().addInterceptor(new BasicAuthInterceptor(user, password)).build();
+    }
+
     public static BlockchainService getBlockchainClient(Configuration conf) {
         if(BLOCKCHAIN_CLIENT == null)
         {
-            OkHttpClient client = new OkHttpClient().newBuilder().build();
             BLOCKCHAIN_CLIENT = new Retrofit.Builder()
-                    .client(client)
+                    .client(getClient(conf.getUsername(), conf.getPassword()))
                     .baseUrl(conf.getUrl())
                     .addConverterFactory(JsonRPCConverterFactory.create())
                     .addConverterFactory(MoshiConverterFactory.create())
@@ -34,9 +57,8 @@ public class ApiClient
     public static EnvironmentService getEnvironmentClient(Configuration conf) {
         if(ENVIRONMENT_CLIENT == null)
         {
-            OkHttpClient client = new OkHttpClient().newBuilder().build();
             ENVIRONMENT_CLIENT = new Retrofit.Builder()
-                    .client(client)
+                    .client(getClient(conf.getUsername(), conf.getPassword()))
                     .baseUrl(conf.getUrl())
                     .addConverterFactory(JsonRPCConverterFactory.create())
                     .addConverterFactory(MoshiConverterFactory.create())
@@ -50,9 +72,8 @@ public class ApiClient
     public static MiningService getMiningClient(Configuration conf) {
         if(MINING_CLIENT == null)
         {
-            OkHttpClient client = new OkHttpClient().newBuilder().build();
             MINING_CLIENT = new Retrofit.Builder()
-                    .client(client)
+                    .client(getClient(conf.getUsername(), conf.getPassword()))
                     .baseUrl(conf.getUrl())
                     .addConverterFactory(JsonRPCConverterFactory.create())
                     .addConverterFactory(MoshiConverterFactory.create())
@@ -66,9 +87,8 @@ public class ApiClient
     public static NetworkService getNetworkClient(Configuration conf) {
         if(NETWORK_CLIENT == null)
         {
-            OkHttpClient client = new OkHttpClient().newBuilder().build();
             NETWORK_CLIENT = new Retrofit.Builder()
-                    .client(client)
+                    .client(getClient(conf.getUsername(), conf.getPassword()))
                     .baseUrl(conf.getUrl())
                     .addConverterFactory(JsonRPCConverterFactory.create())
                     .addConverterFactory(MoshiConverterFactory.create())
@@ -82,9 +102,8 @@ public class ApiClient
     public static UtilitiesService getUtilitiesClient(Configuration conf) {
         if(UTILITIES_CLIENT == null)
         {
-            OkHttpClient client = new OkHttpClient().newBuilder().build();
             UTILITIES_CLIENT = new Retrofit.Builder()
-                    .client(client)
+                    .client(getClient(conf.getUsername(), conf.getPassword()))
                     .baseUrl(conf.getUrl())
                     .addConverterFactory(JsonRPCConverterFactory.create())
                     .addConverterFactory(MoshiConverterFactory.create())
@@ -98,9 +117,8 @@ public class ApiClient
     public static WalletService getWalletClient(Configuration conf) {
         if(WALLET_CLIENT == null)
         {
-            OkHttpClient client = new OkHttpClient().newBuilder().build();
             WALLET_CLIENT = new Retrofit.Builder()
-                    .client(client)
+                    .client(getClient(conf.getUsername(), conf.getPassword()))
                     .baseUrl(conf.getUrl())
                     .addConverterFactory(JsonRPCConverterFactory.create())
                     .addConverterFactory(MoshiConverterFactory.create())
