@@ -1,5 +1,3 @@
-Reddcoin-Java-Core-API
-
 A Reddcoin Java Core RPC API
 
 Feel free to support me with some Reddcoins RDD: Ri7NauXZ26dn6adcGeERb8XpH7yNfu36bz
@@ -7,7 +5,7 @@ Feel free to support me with some Reddcoins RDD: Ri7NauXZ26dn6adcGeERb8XpH7yNfu3
 Import the jar file out/artifacts/Reddcoin_Java_Core_API_jar/Reddcoin-Java-Core-API.jar
 into your java project as a library to have a ready to use API including all dependencies
 
-If you want to work from the source, the dependencies are the following :
+If you want to work from the source, the dependencies are the following (available in the lib folder):
 
 - retrofit >= 2.3
 - okio >= 1.11
