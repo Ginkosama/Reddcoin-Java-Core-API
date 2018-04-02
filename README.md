@@ -12,14 +12,35 @@ If you want to work from the source, the dependencies are the following (availab
 - okhttp >= 3.8
 - moshi >= 1.4
 - converter-moshi >= 2.3
-- jsonrpc >= 1.0
 
 Usage example :
 
 ```java
-Configuration conf = new Configuration("url", "username", "password", "", 0); // passphrase and timeout not yet implemented
-Blockchain blockchain = new Blockchain(conf);
-Call<String> = blockchain.getBlockHash(12345); // return a retrofit Call object, use it async or synchro as you wish
+Configuration conf = new Configuration("url", "username", "password");
+Wallet wallet = new Wallet(conf);
+Call<String> call = wallet.getNewAddress("myNewAddressAcountLabel");
+
+// use the call object either in blocking synchro way
+Response res = call.execute();
+if(res.code() == 200)
+ System.out.println(res.body());
+else System.out.println(res.errorBody());
+
+// or in non blocking async way (usefull for android)
+call.enqueue(new retrofit2.Callback<String>() {
+    @Override
+    public void onResponse(Call<String> call, retrofit2.Response<String> response) {
+     if(response.isSuccessful())
+      System.out.println(response.body());
+     else
+      System.out.println(response.errorBody());
+    }
+
+    @Override
+    public void onFailure(Call<String> call, Throwable throwable) {
+     throwable.printStackTrace();
+    }
+});
 ```
 
 The following API object are available in com.reddcoin.core.API :
