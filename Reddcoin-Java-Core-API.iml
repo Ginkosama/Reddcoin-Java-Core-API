@@ -17,5 +17,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="com.squareup.retrofit2:converter-moshi:2.3.0" level="project" />
+    <orderEntry type="library" name="com.squareup.okhttp3:logging-interceptor:3.7.0" level="project" />
   </component>
 </module>

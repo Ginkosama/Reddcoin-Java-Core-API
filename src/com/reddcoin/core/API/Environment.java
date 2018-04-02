@@ -5,6 +5,8 @@ import com.reddcoin.core.models.InfoResponse;
 import com.reddcoin.core.services.ApiClient;
 import retrofit2.Call;
 
+import java.util.ArrayList;
+
 public class Environment
 {
     private Configuration conf;
@@ -16,11 +18,11 @@ public class Environment
 
     public Call<String> getHelp()
     {
-        return ApiClient.getEnvironmentClient(conf).getHelp();
+        return ApiClient.getEnvironmentClient(conf).getHelp(new ArrayList<>());
     }
 
     public Call<InfoResponse> getInfo()
     {
-        return ApiClient.getEnvironmentClient(conf).getInfo();
+        return ApiClient.getEnvironmentClient(conf).getInfo(new ArrayList<>());
     }
 }

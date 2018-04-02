@@ -4,17 +4,17 @@ import com.reddcoin.core.models.ValidateAddressResponse;
 import com.segment.jsonrpc.JsonRPC;
 import retrofit2.Call;
 import retrofit2.http.Body;
-
-import java.util.HashMap;
+import retrofit2.http.POST;
+import java.util.ArrayList;
 
 public interface UtilitiesService
 {
-    @JsonRPC("SignMessage")
-    Call<String> signMessage(@Body HashMap<String, String> body);
+    @JsonRPC("signmessage") @POST("/")
+    Call<String> signMessage(@Body ArrayList<String> body);
 
-    @JsonRPC("ValidateAddress")
-    Call<ValidateAddressResponse> validateAddress(@Body HashMap<String, String> body);
+    @JsonRPC("validateaddress") @POST("/")
+    Call<ValidateAddressResponse> validateAddress(@Body ArrayList<String> body);
 
-    @JsonRPC("VerifyMessage")
-    Call<Boolean> verifyMessage(@Body HashMap<String, String> body);
+    @JsonRPC("verifymessage") @POST("/")
+    Call<Boolean> verifyMessage(@Body ArrayList<String> body);
 }

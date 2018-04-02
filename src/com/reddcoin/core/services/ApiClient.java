@@ -36,7 +36,9 @@ public class ApiClient
 
     private static OkHttpClient getClient(String user, String password)
     {
-        return new OkHttpClient().newBuilder().addInterceptor(new BasicAuthInterceptor(user, password)).build();
+        if(user != null && password != null)
+            return new OkHttpClient().newBuilder().addInterceptor(new BasicAuthInterceptor(user, password)).build();
+        else return new OkHttpClient().newBuilder().build();
     }
 
     public static BlockchainService getBlockchainClient(Configuration conf) {

@@ -5,7 +5,8 @@ import com.reddcoin.core.models.MiningInfoResponse;
 import com.reddcoin.core.services.ApiClient;
 import retrofit2.Call;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+
 
 public class Mining
 {
@@ -18,14 +19,14 @@ public class Mining
 
     public Call<MiningInfoResponse> getMiningInfo()
     {
-        return ApiClient.getMiningClient(conf).getMiningInfo();
+        return ApiClient.getMiningClient(conf).getMiningInfo(new ArrayList<>());
     }
 
     public Call<Integer> getNetworkHashesPerSecond(int block, int height)
     {
-        HashMap<String, Integer> body = new HashMap<>();
-        body.put("block", block);
-        body.put("height", height);
+        ArrayList<Integer> body = new ArrayList<>();
+        body.add(block);
+        body.add(height);
         return ApiClient.getMiningClient(conf).getNetworkHashesPerSecond(body);
     }
 }

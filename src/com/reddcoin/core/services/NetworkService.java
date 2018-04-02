@@ -5,18 +5,22 @@ import com.reddcoin.core.models.NetworkInfoResponse;
 import com.reddcoin.core.models.PeerInfoResponse;
 import com.segment.jsonrpc.JsonRPC;
 import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.POST;
+
+import java.util.ArrayList;
 
 public interface NetworkService
 {
-    @JsonRPC("GetConnectionCount")
-    Call<Integer> getConnectionCount();
+    @JsonRPC("getconnectioncount") @POST("/")
+    Call<Integer> getConnectionCount(@Body ArrayList<Object> body);
 
-    @JsonRPC("GetNetTotals")
-    Call<NetTotalResponse> getNetTotals();
+    @JsonRPC("getnettotals") @POST("/")
+    Call<NetTotalResponse> getNetTotals(@Body ArrayList<Object> body);
 
-    @JsonRPC("GetNetworkInfo")
-    Call<NetworkInfoResponse> getNetworkInfo();
+    @JsonRPC("getnetworkinfo") @POST("/")
+    Call<NetworkInfoResponse> getNetworkInfo(@Body ArrayList<Object> body);
 
-    @JsonRPC("GetPeerInfo")
-    Call<PeerInfoResponse> getPeerInfo();
+    @JsonRPC("getpeerinfo") @POST("/")
+    Call<PeerInfoResponse> getPeerInfo(@Body ArrayList<Object> body);
 }

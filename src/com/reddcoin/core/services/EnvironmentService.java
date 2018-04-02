@@ -3,12 +3,15 @@ package com.reddcoin.core.services;
 import com.reddcoin.core.models.InfoResponse;
 import com.segment.jsonrpc.JsonRPC;
 import retrofit2.Call;
+import retrofit2.http.POST;
+
+import java.util.ArrayList;
 
 public interface EnvironmentService
 {
-    @JsonRPC("Help")
-    Call<String> getHelp();
+    @JsonRPC("help") @POST("/")
+    Call<String> getHelp(ArrayList<Object> body);
 
-    @JsonRPC("GetInfo")
-    Call<InfoResponse> getInfo();
+    @JsonRPC("getinfo") @POST("/")
+    Call<InfoResponse> getInfo(ArrayList<Object> body);
 }

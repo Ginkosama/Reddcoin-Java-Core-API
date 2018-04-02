@@ -4,123 +4,105 @@ import com.reddcoin.core.models.*;
 import com.segment.jsonrpc.JsonRPC;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.POST;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public interface WalletService
 {
-    @JsonRPC("AddMultiSigAddress")
-    Call<Float> addMultiSigAddress();
+    @JsonRPC("addmultisigaddress") @POST("/")
+    Call<Float> addMultiSigAddress(@Body ArrayList<Object> body);
 
-    @JsonRPC("BackupWallet")
-    Call<Object> backupWallet(@Body HashMap<String, String> body);
+    @JsonRPC("backupwallet") @POST("/")
+    Call<Object> backupWallet(@Body ArrayList<String> body);
 
-    @JsonRPC("WalletPassPhraseChange")
-    Call<Object> changeWalletPasswordPhrase(@Body HashMap<String, String> body);
+    @JsonRPC("walletpassphrasechange") @POST("/")
+    Call<Object> changeWalletPasswordPhrase(@Body ArrayList<String> body);
 
-    @JsonRPC("DumpPrivKey")
-    Call<String> exportPrivateKey(@Body HashMap<String, String> body);
+    @JsonRPC("dumpprivkey") @POST("/")
+    Call<String> exportPrivateKey(@Body ArrayList<String> body);
 
-    @JsonRPC("GetAccount")
-    Call<String> getAccount(@Body HashMap<String, String> body);
+    @JsonRPC("getaccount") @POST("/")
+    Call<String> getAccount(@Body ArrayList<String> body);
 
-    @JsonRPC("GetAddressesByAccount")
-    Call<String> getAccountAddresses(@Body HashMap<String, String> body);
+    @JsonRPC("getaddressesbyaccount") @POST("/")
+    Call<String> getAccountAddresses(@Body ArrayList<String> body);
 
-    @JsonRPC("GetBalance")
-    Call<Float> getBalance();
+    @JsonRPC("getbalance") @POST("/")
+    Call<Float> getBalance(@Body ArrayList<Object> body);
 
-    @JsonRPC("GetBalance")
-    Call<Float> getBalance(@Body HashMap<String, Object> body);
+    @JsonRPC("getinterest") @POST("/")
+    Call<Float> getInterest(@Body ArrayList<Object> body);
 
-    @JsonRPC("GetInterest")
-    Call<Float> getInterest();
+    @JsonRPC("getnewaddress") @POST("/")
+    Call<String> getNewAddress(@Body ArrayList<String> body);
 
-    @JsonRPC("GetRawTransaction")
-    Call<RawTransactionResponse> getRawTransaction(@Body HashMap<String, String> body);
+    @JsonRPC("getrawtransaction") @POST("/")
+    Call<RawTransactionResponse> getRawTransaction(@Body ArrayList<String> body);
 
-    @JsonRPC("GetReceivedByAccount")
-    Call<Float> getReceivedByAccount(@Body HashMap<String, Object> body);
+    @JsonRPC("getreceivedbyaccount") @POST("/")
+    Call<Float> getReceivedByAccount(@Body ArrayList<Object> body);
 
-    @JsonRPC("GetReceivedByAddress")
-    Call<Float> getReceivedByAddress(@Body HashMap<String, Object> body);
+    @JsonRPC("getreceivedbyaddress") @POST("/")
+    Call<Float> getReceivedByAddress(@Body ArrayList<Object> body);
 
-    @JsonRPC("GetStakingInfo")
-    Call<StakingInfoResponse> getStakingInfo();
+    @JsonRPC("getstakinginfo") @POST("/")
+    Call<StakingInfoResponse> getStakingInfo(@Body ArrayList<Object> body);
 
-    @JsonRPC("GetTransaction")
-    Call<TransactionResponse> getTransaction(@Body HashMap<String, String> body);
+    @JsonRPC("gettransaction") @POST("/")
+    Call<TransactionResponse> getTransaction(@Body ArrayList<String> body);
 
-    @JsonRPC("GetUnconfirmedBalance")
-    Call<Float> getUnconfirmedBalance();
+    @JsonRPC("getunconfirmedbalance") @POST("/")
+    Call<Float> getUnconfirmedBalance(@Body ArrayList<Object> body);
 
-    @JsonRPC("GetWalletInfo")
-    Call<WalletResponse> getWalletInfo();
+    @JsonRPC("getwalletinfo") @POST("/")
+    Call<WalletResponse> getWalletInfo(@Body ArrayList<Object> body);
 
-    @JsonRPC("ImportPrivKey")
-    Call<Float> importPrivateKey(@Body HashMap<String, Object> body);
+    @JsonRPC("importprivkey") @POST("/")
+    Call<Float> importPrivateKey(@Body ArrayList<Object> body);
 
-    @JsonRPC("ListAccounts")
-    Call<HashMap<String, Float>> listAccounts();
+    @JsonRPC("listaccounts") @POST("/")
+    Call<ArrayList<Float>> listAccounts(@Body ArrayList<Integer> body);
 
-    @JsonRPC("ListAccounts")
-    Call<HashMap<String, Float>> listAccounts(@Body HashMap<String, Integer> body);
+    @JsonRPC("listaddressgroupings") @POST("/")
+    Call<Object> listAddressGroupings(@Body ArrayList<Object> body);
 
-    @JsonRPC("ListAddressGroupings")
-    Call<Object> listAddressGroupings();
+    @JsonRPC("listlockunspent") @POST("/")
+    Call<Object> listLockUnspent(@Body ArrayList<Object> body);
 
-    @JsonRPC("ListLockUnspent")
-    Call<Object> listLockUnspent();
+    @JsonRPC("listreceivedbyaccount") @POST("/")
+    Call<ArrayList<ReceivedByAccountResponse>> listReceivedByAccount(@Body ArrayList<Object> body);
 
-    @JsonRPC("ListReceivedByAccount")
-    Call<ArrayList<ReceivedByAccountResponse>> listReceivedByAccount();
+    @JsonRPC("listreceivedbyaddress") @POST("/")
+    Call<ArrayList<ReceivedByAddressResponse>> listReceivedByAddress(@Body ArrayList<Object> body);
 
-    @JsonRPC("ListReceivedByAccount")
-    Call<ArrayList<ReceivedByAccountResponse>> listReceivedByAccount(@Body HashMap<String, Object> body);
+    @JsonRPC("listsinceblock") @POST("/")
+    Call<ArrayList<SinceBlockResponse>> listSinceBlock(@Body ArrayList<Object> body);
 
-    @JsonRPC("ListReceivedByAddress")
-    Call<ArrayList<ReceivedByAddressResponse>> listReceivedByAddress();
+    @JsonRPC("listtransactions") @POST("/")
+    Call<ArrayList<TransactionsResponse>> listTransactions(@Body ArrayList<Object> body);
 
-    @JsonRPC("ListReceivedByAddress")
-    Call<ArrayList<ReceivedByAddressResponse>> listReceivedByAddress(@Body HashMap<String, Object> body);
+    @JsonRPC("listunspent") @POST("/")
+    Call<ArrayList<UnspentResponse>> listUnspent(@Body ArrayList<Integer> body);
 
-    @JsonRPC("ListSinceBlock")
-    Call<ArrayList<SinceBlockResponse>> listSinceBlock();
+    @JsonRPC("walletlock") @POST("/")
+    Call<Object> lockWallet(@Body ArrayList<Object> body);
 
-    @JsonRPC("ListSinceBlock")
-    Call<ArrayList<SinceBlockResponse>> listSinceBlock(@Body HashMap<String, Object> body);
+    @JsonRPC("move") @POST("/")
+    Call<Float> moveReddcoins(@Body ArrayList<Object> body);
 
-    @JsonRPC("ListTransactions")
-    Call<ArrayList<TransactionsResponse>> listTransactions();
+    @JsonRPC("sendfrom") @POST("/")
+    Call<String> sendReddcoinsFromAccount(@Body ArrayList<Object> body);
 
-    @JsonRPC("ListTransactions")
-    Call<ArrayList<TransactionsResponse>> listTransactions(@Body HashMap<String, Object> body);
+    @JsonRPC("sendtoaddress") @POST("/")
+    Call<String> sendReddcoinsToAddress(@Body ArrayList<Object> body);
 
-    @JsonRPC("ListUnspent")
-    Call<ArrayList<UnspentResponse>> listUnspent();
+    @JsonRPC("setaccount") @POST("/")
+    Call<Object> setAccount(@Body ArrayList<String> body);
 
-    @JsonRPC("ListUnspent")
-    Call<ArrayList<UnspentResponse>> listUnspent(@Body HashMap<String, Integer> body);
+    @JsonRPC("settxfee") @POST("/")
+    Call<Boolean> setTransactionFee(@Body ArrayList<Float> body);
 
-    @JsonRPC("WalletLock")
-    Call<Object> lockWallet();
-
-    @JsonRPC("Move")
-    Call<Float> moveReddcoins(@Body HashMap<String, Object> body);
-
-    @JsonRPC("SendFrom")
-    Call<String> sendReddcoinsFromAccount(@Body HashMap<String, Object> body);
-
-    @JsonRPC("SendToAddress")
-    Call<String> sendReddcoinsToAddress(@Body HashMap<String, Object> body);
-
-    @JsonRPC("SetAccount")
-    Call<Object> setAccount(@Body HashMap<String, String> body);
-
-    @JsonRPC("SetTxFee")
-    Call<Boolean> setTransactionFee(@Body HashMap<String, Float> body);
-
-    @JsonRPC("WalletPassPhrase")
-    Call<Object> unlockWallet(@Body HashMap<String, Object> body);
+    @JsonRPC("walletpassphrase") @POST("/")
+    Call<Object> unlockWallet(@Body ArrayList<Object> body);
 }

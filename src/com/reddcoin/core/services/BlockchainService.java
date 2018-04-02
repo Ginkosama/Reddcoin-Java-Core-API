@@ -7,39 +7,36 @@ import com.reddcoin.core.models.TransactionOutputSetInfoResponse;
 import com.segment.jsonrpc.JsonRPC;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.POST;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public interface BlockchainService
 {
-    @JsonRPC("GetBestBlockhash")
-    Call<String> getBestBlockhash();
+    @JsonRPC("getbestblockhash") @POST("/")
+    Call<String> getBestBlockhash(@Body ArrayList<Object> body);
 
-    @JsonRPC("GetBlock")
-    Call<BlockResponse> getBlock(@Body HashMap<String, Object> body);
+    @JsonRPC("getblock") @POST("/")
+    Call<BlockResponse> getBlock(@Body ArrayList<Object> body);
 
-    @JsonRPC("GetBlockCount")
-    Call<Integer> getBlockCount();
+    @JsonRPC("getblockcount") @POST("/")
+    Call<Integer> getBlockCount(@Body ArrayList<Object> body);
 
-    @JsonRPC("GetBlockHash")
-    Call<String> getBlockHash(@Body HashMap<String, Object> body);
+    @JsonRPC("getblockhash") @POST("/")
+    Call<String> getBlockHash(@Body ArrayList<Object> body);
 
-    @JsonRPC("GetBlockchainInfo")
-    Call<BlockchainInfoResponse> getBlockchainInfo();
+    @JsonRPC("getblockchaininfo") @POST("/")
+    Call<BlockchainInfoResponse> getBlockchainInfo(@Body ArrayList<Object> body);
 
-    @JsonRPC("GetRawMemPool")
-    Call<ArrayList<String>> getRawMemPool();
+    @JsonRPC("getrawmempool") @POST("/")
+    Call<ArrayList<String>> getRawMemPool(@Body ArrayList<Object> body);
 
-    @JsonRPC("GetTxOut")
-    Call<TransactionOutputResponse> getTransactionOutput(@Body HashMap<String, Object> body);
+    @JsonRPC("gettxout") @POST("/")
+    Call<TransactionOutputResponse> getTransactionOutput(@Body ArrayList<Object> body);
 
-    @JsonRPC("GetTxOutsetInfo")
-    Call<TransactionOutputSetInfoResponse> getTransactionOutputSetInfo();
+    @JsonRPC("gettxoutsetinfo") @POST("/")
+    Call<TransactionOutputSetInfoResponse> getTransactionOutputSetInfo(@Body ArrayList<Object> body);
 
-    @JsonRPC("VerifyChain")
-    Call<Boolean> verifyChain();
-
-    @JsonRPC("VerifyChain")
-    Call<Boolean> verifyChain(@Body HashMap<String, Integer> body);
+    @JsonRPC("verifychain") @POST("/")
+    Call<Boolean> verifyChain(@Body ArrayList<Integer> body);
 }
