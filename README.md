@@ -16,7 +16,7 @@ If you want to work from the source, the dependencies are the following (availab
 Usage example :
 
 ```java
-Configuration conf = new Configuration("url", "username", "password");
+Configuration conf = new Configuration("http://localhost:45443", "username", "password");
 Wallet wallet = new Wallet(conf);
 Call<String> call = wallet.getNewAddress("myNewAddressAcountLabel");
 
